@@ -1,5 +1,7 @@
 # Ramadan-Calendar
+Access the [calendar](https://haroon96.github.io/Ramadan-Calendar) and give it location permissions.
 
+## Vite Instructions
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -27,4 +29,3 @@ npm run dev
 ```sh
 npm run build
 ```
-# Ramadan-Calendar
