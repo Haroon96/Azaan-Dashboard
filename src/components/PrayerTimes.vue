@@ -32,6 +32,7 @@ function formatTime(date) {
     <div class="text-align-center">
         <h2>Prayer Times</h2>
     </div>
+    <br>
     <div class="flex column">
         <div v-for="field in fields" class="flex row justify-content-space-between">
             <span class="text-align-left">{{ field }}</span>
@@ -39,3 +40,10 @@ function formatTime(date) {
         </div>
     </div>
 </template>
+
+<style scoped>
+.row {
+  border-bottom: solid 1px rgba(0,0,0,0.5);
+  padding: 4px;
+}
+</style>

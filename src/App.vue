@@ -35,7 +35,7 @@ const { addressLoaded } = geolocationStore();
 <style scoped>
 .widget {
   background: white;
-  padding: 24px;
+  padding: 24px 24px;
   border-radius: 12px;
   margin: 8px;
 }
@@ -44,5 +44,11 @@ const { addressLoaded } = geolocationStore();
   min-width: 0;
   flex-basis: 0;
   flex-grow: 1;
+}
+
+@media screen and (max-width: 769px) {
+  .equal-width {
+    flex-direction: column;
+  }
 }
 </style>

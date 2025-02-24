@@ -1,26 +1,36 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { prayerTimesStore } from '@/stores/PrayerTimes';
 const { getPrayerTimesForDate } = prayerTimesStore();
 
 const suhoorIftarTimes = ref({});
 const today = new Date();
 const dates = ref([]);
-for (let i = 0; i <= 7; ++i) {
+for (let i = 0; i <= 10; ++i) {
     const newDate = new Date();
     newDate.setDate(today.getDate() + i);
+    dates.value.push(newDate);
     getPrayerTimesForDate(newDate)
-        .then(({ timings, hijriDate }) => {
+        .then(({ hijriDate, timings }) => {
             if (hijriDate['month'] == 'Ramaḍān') {
                 suhoorIftarTimes.value[newDate] = {
                     hijriDate,
                     suhoor: timings['Fajr'],
                     iftar: timings['Maghrib']
                 };
-                dates.value.push(newDate);
             }
-        })
+        });
 }
+
+const ramadanDates = computed(() => {
+    const ramadanDates = [];
+    for (let date of dates.value) {
+        if (getHijriDate(date)['month'] == 'Ramaḍān') {
+            ramadanDates.push(date);
+        }
+    }
+    return ramadanDates;
+});
 
 function formatTime(date) {
     if (date) {
@@ -39,7 +49,7 @@ function formatTime(date) {
 }
 
 function toMonth(date) {
-  return date.toLocaleString('default', { month: 'long' });
+  return date.toLocaleString('default', { month: 'short' });
 }
 
 function toDay(date) {
@@ -69,6 +79,7 @@ function getsuhoorIftarTimes(date) {
     <div class="text-align-center">
         <h2>Suhoor and Iftar Times</h2>
     </div>
+    <br>
     <div class="flex column">
         <div class="flex row justify-content-space-between table-row">
             <span class="text-align-left">Date</span>
@@ -76,7 +87,7 @@ function getsuhoorIftarTimes(date) {
             <span class="text-align-center">Suhoor</span>
             <span class="text-align-right">Iftar</span>
         </div>
-        <div v-for="date in dates" class="flex row justify-content-space-between table-row">
+        <div v-for="date in ramadanDates" class="flex row justify-content-space-between table-row">
             <span class="text-align-left">{{ toDay(date) }}, {{ date.getDate() }} {{ toMonth(date) }}</span>
             <span class="text-align-center">{{ getHijriDate(date)['day'] }}</span>
             <span class="text-align-center">{{ getsuhoorIftarTimes(date)['suhoor'] }}</span>
@@ -90,7 +101,10 @@ function getsuhoorIftarTimes(date) {
   min-width: 0;
   flex-basis: 0;
   flex-grow: 1;
+  border-bottom: solid 1px rgba(0,0,0,0.5);
+  padding: 4px;
 }
+
 .table-row:first-child {
     border-bottom: solid 1px black;
 }
