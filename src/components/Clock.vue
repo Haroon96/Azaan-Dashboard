@@ -1,20 +1,18 @@
 <script setup>
-import { computed, onUnmounted, ref } from 'vue';
+import { computed, onUnmounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import { prayerTimesStore } from '@/stores/PrayerTimes';
+import { clockStore } from '@/stores/Clock';
 const { gregorianToHijri } = prayerTimesStore();
 import Address from '@/components/Address.vue';
-
-const now = ref(new Date());
-const interval = setInterval(() => {
-  now.value = new Date();
-}, 1000);
+const { clock } = storeToRefs(clockStore());
 
 const time = computed(() => {
-  return now.value.toLocaleTimeString();
+  return clock.value.toLocaleTimeString();
 });
 
 const gregorianDate = computed(() => {
-  const currentDate = now.value;
+  const currentDate = clock.value;
   let day = currentDate.getDate().toString();
   if (day.length < 2) {
     day = '0' + day;
@@ -24,7 +22,7 @@ const gregorianDate = computed(() => {
 });
 
 const hijriDate = computed(() => {
-  const hijri = gregorianToHijri(now.value);
+  const hijri = gregorianToHijri(clock.value);
   if (hijri) {
     return `${hijri.day} ${hijri.month}, ${hijri.year}`
   }

@@ -1,8 +1,7 @@
 <script setup>
 import Clock from '@/components/Clock.vue';
 import PrayerTimes from '@/components/PrayerTimes.vue';
-import SuhoorIftar from './components/SuhoorIftar.vue';
-import Loading from '@/components/Loading.vue';
+import SuhoorIftar from '@/components/SuhoorIftar.vue';
 import { geolocationStore } from '@/stores/Geolocation';
 const { addressLoaded } = geolocationStore();
 
@@ -10,22 +9,17 @@ const { addressLoaded } = geolocationStore();
 
 <template>
   <div class="flex column">
-    <div class="flex row justify-content-center widget">  
+    <div class="flex row justify-content-center widget">
       <Clock></Clock>
     </div>
-    <div class="flex row justify-content-space-between equal-width">
-      <div v-if="addressLoaded()" class="widget">
-        <PrayerTimes></PrayerTimes>
-      </div>
-      <div v-else class="widget">
-        <Loading></Loading>
-      </div>
-      
-      <div v-if="addressLoaded()" class="widget">
-        <suhoorIftar></suhoorIftar>
-      </div>
-      <div v-else class="widget">
-        <Loading></Loading>
+    <div v-if="addressLoaded()">
+      <div class="flex row justify-content-space-between equal-width">
+        <div class="widget">
+          <PrayerTimes></PrayerTimes>
+        </div>
+        <div class="widget">
+          <suhoorIftar></suhoorIftar>
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +34,7 @@ const { addressLoaded } = geolocationStore();
   margin: 8px;
 }
 
-.equal-width > * {
+.equal-width>* {
   min-width: 0;
   flex-basis: 0;
   flex-grow: 1;
