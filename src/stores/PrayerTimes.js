@@ -3,14 +3,12 @@ import { defineStore } from 'pinia'
 export const prayerTimesStore = defineStore('prayerTimesStore', () => {
     const adhanTimes = {};
 
-    let city = '';
-    let country = '';
-    let state = '';
+    let latitude = '';
+    let longitude = '';
     
-    function setLocation(_city, _state, _country) {
-        city = _city;
-        state = _state;
-        country = _country;
+    function setLocation(_latitude, _longitude) {
+        latitude = _latitude;
+        longitude = _longitude;
     }
 
     function parseTime(timeStr) {
@@ -48,7 +46,7 @@ export const prayerTimesStore = defineStore('prayerTimesStore', () => {
             return adhanTimes[key][date.getDate()];
         }
         if (!promises[key]) {
-            promises[key] = getRequest(`https://api.aladhan.com/v1/calendarByCity/${year}/${month}?city=${city}&country=${country}&state=${state}`);
+            promises[key] = getRequest(`https://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${latitude}&longitude=${longitude}`);
         }
         const response = await promises[key];
         if (adhanTimes[key]) {

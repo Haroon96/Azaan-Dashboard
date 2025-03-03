@@ -4,6 +4,6 @@ const { address, addressLoaded } = geolocationStore();
 </script>
 
 <template>
-    <div v-if="addressLoaded()">{{ address.city }}, {{ address.state }}</div>
+    <div v-if="addressLoaded()">{{ address.name }}</div>
     <div v-else>&nbsp;</div>
 </template>

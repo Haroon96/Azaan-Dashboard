@@ -14,17 +14,14 @@ const time = computed(() => {
 const gregorianDate = computed(() => {
   const currentDate = clock.value;
   let day = currentDate.getDate().toString();
-  if (day.length < 2) {
-    day = '0' + day;
-  }
   const month = toMonth(currentDate);
-  return `${toDay(currentDate)}, ${day} ${month}, ${currentDate.getFullYear()}`;
+  return `${toDay(currentDate)}, ${day} ${month}`;
 });
 
 const hijriDate = computed(() => {
   const hijri = gregorianToHijri(clock.value);
   if (hijri) {
-    return `${hijri.day} ${hijri.month}, ${hijri.year}`
+    return `${hijri.day} ${hijri.month}`
   }
   return '---';
 });
@@ -46,14 +43,14 @@ function toDay(date) {
 <template>
   <div class="flex align-items-center justify-content-space-between parent">
     <div class="text-align-left">
-      <h3>{{ gregorianDate }}</h3>
+      <h2>{{ gregorianDate }}</h2>
     </div>
     <div class="text-align-center">
-      <h2>{{ time }}</h2>
-      <h5><Address></Address></h5>
+      <h1>{{ time }}</h1>
+      <h4><Address></Address></h4>
     </div>
     <div class="text-align-right">
-      <h3>{{ hijriDate }}</h3>
+      <h2>{{ hijriDate }}</h2>
     </div>
   </div>
 </template>
@@ -64,6 +61,7 @@ h1,h2,h3,h4,h5 {
   padding: 0;
 }
 h5 {
+  font-weight: normal;
   opacity: 0.5;
 }
 div.parent {

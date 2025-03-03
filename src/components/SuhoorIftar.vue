@@ -1,25 +1,36 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { storeToRefs } from 'pinia';
 import { prayerTimesStore } from '@/stores/PrayerTimes';
 const { getPrayerTimesForDate } = prayerTimesStore();
 
+import { clockStore } from '@/stores/Clock';
+const { registerNewDateListener } = clockStore();
+const { clock } = storeToRefs(clockStore());
+
 const suhoorIftarTimes = ref({});
-const today = new Date();
 const dates = ref([]);
-for (let i = 0; i <= 10; ++i) {
-    const newDate = new Date();
-    newDate.setDate(today.getDate() + i);
-    dates.value.push(newDate);
-    getPrayerTimesForDate(newDate)
-        .then(({ hijriDate, timings }) => {
-            if (hijriDate['month'] == 'Ramaḍān') {
-                suhoorIftarTimes.value[newDate] = {
-                    hijriDate,
-                    suhoor: timings['Fajr'],
-                    iftar: timings['Maghrib']
-                };
-            }
-        });
+
+registerNewDateListener(getTimings);
+getTimings();
+
+async function getTimings() {
+    dates.value = [];
+    suhoorIftarTimes.value = {};
+    for (let i = 0; i <= 10; ++i) {
+        const newDate = new Date();
+        newDate.setDate(clock.value.getDate() + i);
+        dates.value.push(newDate);
+        const { hijriDate, timings } = await getPrayerTimesForDate(newDate);
+        if (hijriDate['month'] != 'Ramaḍān') {
+            continue
+        }
+        suhoorIftarTimes.value[newDate] = {
+            hijriDate,
+            suhoor: timings['Fajr'],
+            iftar: timings['Maghrib']
+        };
+    }
 }
 
 const ramadanDates = computed(() => {
@@ -29,7 +40,7 @@ const ramadanDates = computed(() => {
             ramadanDates.push(date);
         }
     }
-    return ramadanDates;
+    return ramadanDates.slice(0, 7);
 });
 
 function formatTime(date) {
