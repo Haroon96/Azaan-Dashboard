@@ -9,7 +9,7 @@ const { clock } = storeToRefs(clockStore());
 
 const prayerTimes = ref({});
 const fields = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Sunset", "Isha"];
-const PRAYER_QUEUE_SECONDS = 8000;
+const PRAYER_QUEUE_SECONDS = 120;
 
 registerNewDateListener(getTodaysTimes);
 getTodaysTimes();
