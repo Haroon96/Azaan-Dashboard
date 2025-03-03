@@ -40,7 +40,7 @@ const ramadanDates = computed(() => {
             ramadanDates.push(date);
         }
     }
-    return ramadanDates.slice(0, 7);
+    return ramadanDates.slice(0, 5);
 });
 
 function formatTime(date) {
@@ -116,7 +116,16 @@ function getsuhoorIftarTimes(date) {
   padding: 4px;
 }
 
+.table-row {
+    opacity: 0.5;
+}
+
 .table-row:first-child {
     border-bottom: solid 1px black;
+    opacity: 1;
+}
+
+.table-row:nth-child(2) {
+    opacity: 1;
 }
 </style>

@@ -8,7 +8,7 @@ const { registerNewDateListener } = clockStore();
 const { clock } = storeToRefs(clockStore());
 
 const prayerTimes = ref({});
-const fields = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Sunset", "Isha"];
+const fields = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
 const PRAYER_QUEUE_SECONDS = 120;
 
 registerNewDateListener(getTodaysTimes);
@@ -107,9 +107,9 @@ function stopAdhan() {
         <h3 v-if="nextPrayer">{{ calculateTimeUntil(prayerTimes[nextPrayer]) }} until {{ nextPrayer }}</h3>
     </div>
     <div class="flex prayertime-container justify-content-space-around">
-        <div v-for="field in fields" class="flex row prayertime justify-content-space-between" :class="{'passed': clock > prayerTimes[field]}">
-            <span class="text-align-left">{{ field }}</span>
-            <span class="text-align-right">{{ formatTime(prayerTimes[field]) }}</span>
+        <div v-for="field in fields" class="flex column prayertime justify-content-space-around" :class="{'passed': clock > prayerTimes[field]}">
+            <span class="text-align-center">{{ field }}</span>
+            <span class="text-align-center">{{ formatTime(prayerTimes[field]) }}</span>
         </div>
     </div>
     <div class="adhan-modal widget text-align-center" v-if="prayerQueued">
@@ -133,9 +133,7 @@ function stopAdhan() {
     padding: 4px;
     width: 30%;
     font-size: 1.1em;
-}
-.prayertime > span {
-    margin: 4px;
+    text-align: center;
 }
 .passed {
     opacity: 0.5;
