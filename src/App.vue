@@ -27,12 +27,6 @@ const { addressLoaded } = geolocationStore();
 </template>
 
 <style scoped>
-.widget {
-  background: white;
-  padding: 24px 24px;
-  border-radius: 12px;
-  margin: 8px;
-}
 
 .equal-width>* {
   min-width: 0;
