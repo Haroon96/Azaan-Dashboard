@@ -53,15 +53,15 @@ function calculateTimeUntil(time) {
 }
 
 function secondsToHMS(secs) {
-  function keep(n, v) {
-    n = parseInt(n);
-    if (n == 0) {
-        return '';
+    function keep(n, v) {
+        n = parseInt(n);
+        if (n == 0) {
+            return '';
+        }
+        return n + v + ' ';
     }
-    return n + v + ' ';
-  }
-  secs = secs;
-  return keep(secs/3600 |0, 'h') + keep((secs%3600) / 60 |0, 'm') + keep(secs%60, 's');
+    secs = secs;
+    return keep(secs / 3600 | 0, 'h') + keep((secs % 3600) / 60 | 0, 'm') + keep(secs % 60, 's');
 }
 
 let prayerQueued = ref(null);
@@ -104,20 +104,22 @@ function stopAdhan() {
         <h2>Prayer Times</h2>
     </div>
     <div class="text-align-center">
-        <h3 v-if="nextPrayer">{{ calculateTimeUntil(prayerTimes[nextPrayer]) }} until {{ nextPrayer }}</h3>
+        <h2 v-if="nextPrayer">{{ calculateTimeUntil(prayerTimes[nextPrayer]) }} until {{ nextPrayer }}</h2>
     </div>
+    <br>
     <div class="flex prayertime-container justify-content-space-around">
-        <div v-for="field in fields" class="flex column prayertime justify-content-space-around" :class="{'passed': clock > prayerTimes[field]}">
+        <div v-for="field in fields" class="flex column prayertime justify-content-space-around"
+            :class="{ 'passed': clock > prayerTimes[field] }">
             <span class="text-align-center">{{ field }}</span>
             <span class="text-align-center">{{ formatTime(prayerTimes[field]) }}</span>
         </div>
     </div>
     <div class="adhan-modal widget text-align-center" v-if="prayerQueued">
 
-        <h2>{{ prayerQueued }} Adhan</h2>
-        <h3 v-if="prayerTimes[prayerQueued] >= clock">{{ calculateTimeUntil(prayerTimes[prayerQueued]) }}</h3>
-
-        <button @click="stopAdhan()">STOP</button>
+        <h1>{{ prayerQueued }} Adhan</h1>
+        <h2 v-if="prayerTimes[prayerQueued] >= clock">Starts in {{ calculateTimeUntil(prayerTimes[prayerQueued]) }}</h2>
+        <br>
+        <button @click="stopAdhan()">Stop</button>
 
     </div>
 </template>
@@ -126,18 +128,21 @@ function stopAdhan() {
 .prayertime-container {
     flex-wrap: wrap;
 }
+
 .prayertime {
-    border: solid 1px rgba(0,0,0,0.5);
+    border: solid 1px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
     margin-top: 8px;
     padding: 4px;
     width: 30%;
-    font-size: 1.1em;
+    font-size: 1.3em;
     text-align: center;
 }
+
 .passed {
     opacity: 0.5;
 }
+
 .adhan-modal {
     background: white;
     position: absolute;
@@ -145,6 +150,7 @@ function stopAdhan() {
     width: 50%;
     left: 24%;
 }
+
 .adhan-modal button {
     width: 100%;
     padding: 12px;

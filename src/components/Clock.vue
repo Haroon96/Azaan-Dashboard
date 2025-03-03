@@ -56,14 +56,6 @@ function toDay(date) {
 </template>
 
 <style scoped>
-h1,h2,h3,h4,h5 {
-  margin: 0;
-  padding: 0;
-}
-h5 {
-  font-weight: normal;
-  opacity: 0.5;
-}
 div.parent {
   width: 100%;
 }
