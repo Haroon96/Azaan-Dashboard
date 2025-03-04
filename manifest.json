@@ -1,0 +1,23 @@
+{
+    "name": "Ramadan Calendar",
+    "short_name": "Ramadan Calendar",
+    "theme_color": "#ffcbe4",
+    "background_color": "#87ceeb",
+    "display": "standalone",
+    "scope": ".",
+    "start_url": "index.html",
+    "id": "/Ramadan-Calendar/index.html",
+    "description": "Ramadan calendar for namaz timings",
+    "icons": [
+        {
+            "src": "favicon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "favicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
