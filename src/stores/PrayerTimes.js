@@ -11,15 +11,12 @@ export const prayerTimesStore = defineStore('prayerTimesStore', () => {
         longitude = _longitude;
     }
 
-    function parseTime(timeStr) {
+    function parseTime(timeStr, date, month, year) {
         const match = timeStr.match(/(\d{2}):(\d{2})\s\((\w+)\)/);
         let [_, hours, minutes, timezone] = match;
         hours = parseInt(hours, 10);
         minutes = parseInt(minutes, 10);
-        // Get current date and set hours and minutes
-        const now = new Date();
-        now.setHours(hours, minutes, 0, 0); // Set time, keep the same date
-        return now;
+        return new Date(year, month, date, hours, minutes, 0, 0);
     }
 
     function gregorianToHijri(date) {
@@ -55,11 +52,11 @@ export const prayerTimesStore = defineStore('prayerTimesStore', () => {
         if (response.code && response.code == 200) {
             adhanTimes[key] = {};
             for (let row of response['data']) {
+                const day = parseInt(row['date']['gregorian']['day']);
                 const timings = {};
                 for (let time in row['timings']) {
-                    timings[time] = parseTime(row['timings'][time]);
+                    timings[time] = parseTime(row['timings'][time], day, month - 1, year);
                 }
-                const day = parseInt(row['date']['gregorian']['day']);
                 const hijriDate = {
                     day: row['date']['hijri']['day'],
                     month: row['date']['hijri']['month']['en'],
