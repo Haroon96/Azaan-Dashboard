@@ -117,7 +117,7 @@ function stopAdhan() {
     <div class="adhan-modal widget text-align-center" v-if="prayerQueued">
 
         <h1>{{ prayerQueued }} Adhan</h1>
-        <h2 v-if="prayerTimes[prayerQueued] >= clock">Starts in {{ calculateTimeUntil(prayerTimes[prayerQueued]) }}</h2>
+        <h2 v-if="prayerTimes[prayerQueued] > clock">Starts in {{ calculateTimeUntil(prayerTimes[prayerQueued]) }}</h2>
         <br>
         <button @click="stopAdhan()">Stop</button>
 
