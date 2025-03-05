@@ -6,17 +6,17 @@ export const clockStore = defineStore('clockStore', () => {
     const newDateListeners = [];
 
     let lastKnownDate = clock.value.getDate();
+    setInterval(incrementClock, 1000);
 
-    setInterval(() => {
+    function incrementClock() {
         clock.value = new Date();
         if (lastKnownDate != clock.value.getDate()) {
-            console.log('fetching new data');
             for (let listener of newDateListeners) {
                 listener();
             }
             lastKnownDate = clock.value.getDate();
         }
-    }, 1000);
+    }
 
     function registerNewDateListener(fn) {
         newDateListeners.push(fn);
