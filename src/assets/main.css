@@ -33,7 +33,23 @@ h2 {
     padding: 24px 24px;
     border-radius: 12px;
     margin: 8px;
+    border: solid 1px #111;
 }
+
+.modal {
+    background: #2a2d34;
+    position: absolute;
+    top: 48px;
+    width: 50%;
+    left: 24%;
+}
+
+.modal button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+}
+
 
 .flex {
     display: flex;

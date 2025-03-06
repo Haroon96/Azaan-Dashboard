@@ -114,7 +114,7 @@ function stopAdhan() {
             <span class="text-align-center">{{ formatTime(prayerTimes[field]) }}</span>
         </div>
     </div>
-    <div class="adhan-modal widget text-align-center" v-if="prayerQueued">
+    <div class="modal widget text-align-center" v-if="prayerQueued">
 
         <h1>{{ prayerQueued }} Adhan</h1>
         <h2 v-if="prayerTimes[prayerQueued] > clock">Starts in {{ calculateTimeUntil(prayerTimes[prayerQueued]) }}</h2>
@@ -125,6 +125,10 @@ function stopAdhan() {
 </template>
 
 <style scoped>
+.modal {
+    font-size: 1.5em;
+}
+
 .prayertime-container {
     flex-wrap: wrap;
 }
@@ -140,17 +144,4 @@ function stopAdhan() {
     text-decoration: line-through;
 }
 
-.adhan-modal {
-    background: white;
-    position: absolute;
-    top: 48px;
-    width: 50%;
-    left: 24%;
-}
-
-.adhan-modal button {
-    width: 100%;
-    padding: 12px;
-    font-size: 1em;
-}
 </style>
