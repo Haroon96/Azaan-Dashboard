@@ -2,9 +2,10 @@
 
 body {
     margin: 24px;
-    background: skyblue;
+    background: black;
     font-family: 'Markazi Text';
     font-size: 1.5em;
+    color: white;
 }
 
 
@@ -28,11 +29,10 @@ h2 {
 }
 
 .widget {
-    background: white;
+    background: #2a2d34;
     padding: 24px 24px;
     border-radius: 12px;
     margin: 8px;
-    border: solid 1px #aaa;
 }
 
 .flex {

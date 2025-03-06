@@ -130,10 +130,6 @@ function stopAdhan() {
 }
 
 .prayertime {
-    border: solid 1px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    margin-top: 8px;
-    padding: 4px;
     width: 30%;
     font-size: 1.3em;
     text-align: center;
@@ -141,6 +137,7 @@ function stopAdhan() {
 
 .passed {
     opacity: 0.5;
+    text-decoration: line-through;
 }
 
 .adhan-modal {
