@@ -17,9 +17,9 @@ const { addressLoaded } = geolocationStore();
         <div class="widget">
           <PrayerTimes></PrayerTimes>
         </div>
-        <div class="widget">
-          <suhoorIftar></suhoorIftar>
-        </div>
+        <!-- <div class="widget">
+          <SuhoorIftar></SuhoorIftar>
+        </div> -->
       </div>
     </div>
   </div>
