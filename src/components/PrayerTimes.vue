@@ -137,6 +137,7 @@ function stopAdhan() {
     width: 30%;
     font-size: 1.3em;
     text-align: center;
+    margin: 8px;
 }
 
 .passed {
