@@ -1,5 +1,5 @@
-# Islamic-Calendar
-Access the [calendar](https://haroon96.github.io/Islamic-Calendar) and give it location permissions.
+# Azaan-Dashboard
+Access the [dashboard](https://haroon96.github.io/Azaan-Dashboard) and give it location permissions.
 
 ## Vite Instructions
 This template should help get you started developing with Vue 3 in Vite.
