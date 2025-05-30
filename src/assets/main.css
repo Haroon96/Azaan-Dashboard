@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 body {
     margin: 24px;
     background: black;
-    font-family: 'Markazi Text';
+    font-family: 'Lora';
     font-size: 1.5em;
     color: white;
 }
